@@ -1,0 +1,27 @@
+name: 钉钉打卡提醒
+
+on:
+  schedule:
+    # UTC时间 每天凌晨1点(北京时间早上9点)
+    - cron: '0 1 * * 1-5'
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  send-reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 发送钉钉提醒
+        env:
+          # 这里填你的 Webhook 地址中的 access_token
+          DINGDING_TOKEN: YOUR_ACCESS_TOKEN
+        run: |
+          curl -X POST \
+            "https://oapi.dingtalk.com/robot/send?access_token=$DINGDING_TOKEN" \
+            -H 'Content-Type: application/json' \
+            -d '{
+              "msgtype": "markdown",
+              "markdown": {
+                "title": "📢 工时打卡提醒",
+                "text": "## 早上好！开始工作了吗？\n\n- 👷 请登录 [工时管理系统](http://你的服务器地址/login.html) 开始计时打卡\n\n---\n> ⏰ 发送时间：定时自动发送"
+              }
+            }'
