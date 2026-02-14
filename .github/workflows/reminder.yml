@@ -3,7 +3,7 @@ name: 钉钉打卡提醒
 on:
   schedule:
     # UTC时间 每天凌晨1点(北京时间早上9点)
-    - cron: '0 1 * * 1-5'
+    - cron: '0 1 * * 0-4'
   workflow_dispatch:  # 允许手动触发
 
 jobs:
@@ -22,6 +22,6 @@ jobs:
               "msgtype": "markdown",
               "markdown": {
                 "title": "📢 工时打卡提醒",
-                "text": "## 早上好！开始工作了吗？\n\n- 👷 请登录 [工时管理系统](http://你的服务器地址/login.html) 开始计时打卡\n\n---\n> ⏰ 发送时间：定时自动发送"
+                "text": "## 早上好！开始工作了吗？\n\n- 👷 请登录 [工时管理系统](http://192.168.0.79/timer/index.html) 开始计时打卡\n\n---\n> ⏰ 发送时间：定时自动发送"
               }
             }'
