@@ -3,7 +3,7 @@ name: 钉钉打卡提醒
 on:
   schedule:
     # UTC时间 每天凌晨1点(北京时间早上9点)
-    - cron: '0 3 * * 1-5'
+    - cron: '30 3 * * 1-5'
   workflow_dispatch:
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
           DINGDING_TOKEN: ${{ secrets.DINGDING_TOKEN }}
         run: |
           curl -X POST \
-            "https://oapi.dingtalk.com/robot/send?access_token=$DINGDING_TOKEN" \
+            "https://oapi.dingtalk.com/robot/send?access_token=dffeb261416ff4843a35819f87a4576b861c1cfe7d7ca186305df14a4e04825f" \
             -H 'Content-Type: application/json' \
             -d '{
               "msgtype": "markdown",
