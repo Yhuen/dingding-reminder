@@ -3,7 +3,7 @@ name: 钉钉打卡提醒
 on:
   schedule:
     # UTC时间 每天凌晨1点(北京时间早上9点)
-    - #cron: '0 1 * * 0-4'
+    - cron: '0 1 * * 0-4'
   workflow_dispatch:  # 允许手动触发
 
 jobs:
