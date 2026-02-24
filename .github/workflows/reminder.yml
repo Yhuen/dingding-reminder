@@ -3,8 +3,8 @@ name: 钉钉打卡提醒
 on:
   schedule:
     # UTC时间 每天凌晨1点(北京时间早上9点)
-    - cron: '0 1 * * 0-4'
-  workflow_dispatch:  # 允许手动触发
+    - cron: '0 3 * * 0-4'
+  workflow_dispatch:
 
 jobs:
   send-reminder:
@@ -12,8 +12,7 @@ jobs:
     steps:
       - name: 发送钉钉提醒
         env:
-          # 这里填你的 Webhook 地址中的 access_token
-          DINGDING_TOKEN: 361e7477f99fe2e684655b11c9f72890e3c38575da2f2e3842cdc9a3219c7030
+          DINGDING_TOKEN: ${{ secrets.DINGDING_TOKEN }}
         run: |
           curl -X POST \
             "https://oapi.dingtalk.com/robot/send?access_token=$DINGDING_TOKEN" \
