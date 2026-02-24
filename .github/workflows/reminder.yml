@@ -1,9 +1,8 @@
 name: 钉钉打卡提醒
 
-'on':
+on:
   schedule:
-    # UTC时间 每天凌晨1点(北京时间早上9点)
-    - cron: '*/5 * * * *'
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -14,13 +13,8 @@ jobs:
         env:
           DINGDING_TOKEN: ${{ secrets.DINGDING_TOKEN }}
         run: |
-          curl -X POST \
-            "https://oapi.dingtalk.com/robot/send?access_token=dffeb261416ff4843a35819f87a4576b861c1cfe7d7ca186305df14a4e04825f" \
-            -H 'Content-Type: application/json' \
-            -d '{
-              "msgtype": "markdown",
-              "markdown": {
-                "title": "📢 工时打卡提醒",
-                "text": "## 早上好！开始工作了吗？\n\n- 👷 请登录 [工时管理系统](http://192.168.0.79/timer/index.html) 开始计时打卡\n\n---\n> ⏰ 发送时间：定时自动发送"
-              }
-            }'
+          echo "trigger ok"
+          # 下面是示例，确保你的 token 正确
+          # curl -H "Content-Type: application/json" \
+          #   -d '{"msgtype":"text","text":{"content":"打卡提醒"}}' \
+          #   "https://oapi.dingtalk.com/robot/send?access_token=${DINGDING_TOKEN}"
