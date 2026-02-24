@@ -14,7 +14,7 @@ jobs:
           DINGDING_TOKEN: ${{ secrets.DINGDING_TOKEN }}
         run: |
           echo "trigger ok"
-          # 下面是示例，确保你的 token 正确
-          # curl -H "Content-Type: application/json" \
-          #   -d '{"msgtype":"text","text":{"content":"打卡提醒"}}' \
-          #   "https://oapi.dingtalk.com/robot/send?access_token=${DINGDING_TOKEN}"
+          下面是示例，确保你的 token 正确
+          curl -H "Content-Type: application/json" \
+          -d '{"msgtype":"text","text":{"content":"打卡提醒"}}' \
+          "https://oapi.dingtalk.com/robot/send?access_token=${DINGDING_TOKEN}"
