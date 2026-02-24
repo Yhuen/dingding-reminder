@@ -14,6 +14,17 @@ jobs:
           DINGDING_TOKEN: ${{ secrets.DINGDING_TOKEN }}
         run: |
           echo "trigger ok"
+          cat << 'EOF' > payload.json
+          {
+            "msgtype": "markdown",
+            "markdown": {
+              "title": "打卡提醒",
+              "text": "### 早上好！开始工作了吗？\n\n- 👨‍💻 请登录 [工时管理系统](https://192.168.0.79:8080) 开始计时打卡\n\n> ⏰ 发送时间：定时自动发送"
+            }
+          }
+          EOF
+
           curl -H "Content-Type: application/json" \
-          -d '{"msgtype":"text","text":{"content":"打卡提醒"}}' \
-          "https://oapi.dingtalk.com/robot/send?access_token=${DINGDING_TOKEN}"
+               -d @payload.json \
+               "https://oapi.dingtalk.com/robot/send?access_token=${DINGDING_TOKEN}"
+
